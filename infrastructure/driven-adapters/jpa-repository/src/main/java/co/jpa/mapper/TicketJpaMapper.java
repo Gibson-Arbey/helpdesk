@@ -17,9 +17,9 @@ public class TicketJpaMapper {
                 entity.getDescription(),
                 entity.getCustomer().getId(),
                 entity.getStatus(),
+                entity.getCreatedOn(),
                 entity.getAgent().getId(),
-                entity.getAssignedOn(),
-                entity.getCreatedOn()
+                entity.getAssignedOn()
         );
     }
 
@@ -33,9 +33,9 @@ public class TicketJpaMapper {
                 .description(ticket.getDescription())
                 .customer(ticket.getCustomerId() != null ? CustomerJpaEntity.builder().id(ticket.getCustomerId()).build() : null)
                 .status(ticket.getStatus())
+                .createdOn(ticket.getCreatedOn())
                 .agent(ticket.getAgentId() != null ? AgentJpaEntity.builder().id(ticket.getAgentId()).build() : null)
                 .assignedOn(ticket.getAssignedOn())
-                .createdOn(ticket.getCreatedOn())
                 .build();
     }
 }

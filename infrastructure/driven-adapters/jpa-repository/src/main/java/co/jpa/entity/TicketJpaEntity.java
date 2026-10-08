@@ -34,6 +34,9 @@ public class TicketJpaEntity {
     @Column(name = "tick_status", nullable = false)
     private TicketStatus status;
 
+    @Column(name = "tick_createdon", nullable = false)
+    private LocalDateTime createdOn;
+
     @ManyToOne
     @JoinColumn(name = "agen_id")
     private AgentJpaEntity agent;
@@ -41,6 +44,4 @@ public class TicketJpaEntity {
     @Column(name = "tick_assignedon")
     private LocalDateTime assignedOn;
 
-    @Column(name = "tick_createdon", nullable = false)
-    private LocalDateTime createdOn;
 }
