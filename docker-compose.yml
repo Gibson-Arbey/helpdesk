@@ -1,0 +1,27 @@
+services:
+  ticket-db:
+    image: postgres:16-alpine
+    container_name: ticket-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ticket-db
+    volumes:
+      - ticket_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:4.2-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"   # Puerto para comunicación entre microservicios
+      - "15672:15672" # Puerto para la consola de gestión web
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq # <--- ¡La persistencia!
+volumes:
+  ticket_data:
+  rabbitmq_data:

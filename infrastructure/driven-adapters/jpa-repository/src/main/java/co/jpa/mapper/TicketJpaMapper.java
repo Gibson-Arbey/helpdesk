@@ -1,0 +1,41 @@
+package co.jpa.mapper;
+
+import co.jpa.entity.AgentJpaEntity;
+import co.jpa.entity.CustomerJpaEntity;
+import co.jpa.entity.TicketJpaEntity;
+import co.model.ticket.Ticket;
+
+public class TicketJpaMapper {
+
+    public static Ticket toDomain(TicketJpaEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        return Ticket.restore(
+                entity.getId(),
+                entity.getTitle(),
+                entity.getDescription(),
+                entity.getCustomer().getId(),
+                entity.getStatus(),
+                entity.getAgent().getId(),
+                entity.getAssignedOn(),
+                entity.getCreatedOn()
+        );
+    }
+
+    public static TicketJpaEntity toEntity(Ticket ticket) {
+        if (ticket == null) {
+            return null;
+        }
+        return TicketJpaEntity.builder()
+                .id(ticket.getId())
+                .title(ticket.getTitle())
+                .description(ticket.getDescription())
+                .customer(ticket.getCustomerId() != null ? CustomerJpaEntity.builder().id(ticket.getCustomerId()).build() : null)
+                .status(ticket.getStatus())
+                .agent(ticket.getAgentId() != null ? AgentJpaEntity.builder().id(ticket.getAgentId()).build() : null)
+                .assignedOn(ticket.getAssignedOn())
+                .createdOn(ticket.getCreatedOn())
+                .build();
+    }
+}
