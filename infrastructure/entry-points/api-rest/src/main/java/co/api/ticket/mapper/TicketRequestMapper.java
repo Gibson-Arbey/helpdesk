@@ -5,7 +5,7 @@ import co.usecase.ticket.command.CreateTicketCommand;
 
 public class TicketRequestMapper {
 
-    public CreateTicketCommand toCreateTicketCommand(CreateTicketRequest request) {
+    public static CreateTicketCommand toCreateTicketCommand(CreateTicketRequest request) {
         if(request == null) {
             return null;
         }
