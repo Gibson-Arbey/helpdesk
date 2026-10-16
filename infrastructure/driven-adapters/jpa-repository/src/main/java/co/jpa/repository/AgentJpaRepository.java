@@ -1,7 +1,7 @@
 package co.jpa.repository;
 
 import co.jpa.entity.AgentJpaEntity;
-import co.model.agent.AgentStatus;
+import co.model.agentprofile.AgentStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

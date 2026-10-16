@@ -1,5 +1,6 @@
 package co.model.agent;
 
+import co.model.agentprofile.AgentStatus;
 import lombok.Getter;
 
 @Getter

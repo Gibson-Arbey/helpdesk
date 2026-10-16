@@ -3,7 +3,7 @@ package co.jpa.adapter;
 import co.jpa.mapper.AgentJpaMapper;
 import co.jpa.repository.AgentJpaRepository;
 import co.model.agent.Agent;
-import co.model.agent.AgentStatus;
+import co.model.agentprofile.AgentStatus;
 import co.model.agent.gateways.AgentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

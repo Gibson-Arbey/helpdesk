@@ -1,7 +1,7 @@
 package co.model.agent.gateways;
 
 import co.model.agent.Agent;
-import co.model.agent.AgentStatus;
+import co.model.agentprofile.AgentStatus;
 
 public interface AgentRepository {
 

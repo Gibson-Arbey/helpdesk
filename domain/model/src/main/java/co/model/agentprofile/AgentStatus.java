@@ -1,4 +1,4 @@
-package co.model.agent;
+package co.model.agentprofile;
 
 public enum AgentStatus {
     AVAILABLE,

@@ -1,6 +1,6 @@
 package co.jpa.entity;
 
-import co.model.agent.AgentStatus;
+import co.model.agentprofile.AgentStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

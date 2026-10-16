@@ -1,8 +1,8 @@
 package co.usecase.ticket;
 
 import co.model.agent.Agent;
-import co.model.agent.AgentStatus;
-import co.model.agent.exception.NoAvailableAgentException;
+import co.model.agentprofile.AgentStatus;
+import co.model.agentprofile.exception.NoAvailableAgentException;
 import co.model.agent.gateways.AgentRepository;
 import co.model.ticket.Ticket;
 import co.model.ticket.TicketStatus;
