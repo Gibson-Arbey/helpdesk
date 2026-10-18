@@ -1,6 +1,7 @@
 apply plugin: 'org.springframework.boot'
 
 dependencies {
+	implementation project(':security')
 	implementation project(':rabbitmq-listener')
 	implementation project(':rabbitmq-publisher')
 	testImplementation 'org.springframework:spring-web'

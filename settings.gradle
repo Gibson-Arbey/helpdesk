@@ -27,3 +27,5 @@ include ':rabbitmq-publisher'
 project(':rabbitmq-publisher').projectDir = file('./infrastructure/driven-adapters/rabbitmq-publisher')
 include ':rabbitmq-listener'
 project(':rabbitmq-listener').projectDir = file('./infrastructure/entry-points/rabbitmq-listener')
+include ':security'
+project(':security').projectDir = file('./infrastructure/driven-adapters/security')

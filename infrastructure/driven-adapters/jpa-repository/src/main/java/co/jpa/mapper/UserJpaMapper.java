@@ -2,6 +2,8 @@ package co.jpa.mapper;
 
 import co.jpa.entity.UserJpaEntity;
 import co.model.user.User;
+import co.model.user.valueobject.Email;
+import co.model.user.valueobject.Password;
 
 public class UserJpaMapper {
 
@@ -12,8 +14,8 @@ public class UserJpaMapper {
         return UserJpaEntity.builder()
                 .id(user.getId())
                 .name(user.getName())
-                .email(user.getEmail())
-                .password(user.getPassword())
+                .email(user.getEmail().value())
+                .password(user.getPassword().value())
                 .role(user.getRole())
                 .build();
     }
@@ -22,6 +24,6 @@ public class UserJpaMapper {
         if (user == null) {
             return null;
         }
-        return User.restore(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getRole());
+        return User.restore(user.getId(), user.getName(), new Email(user.getEmail()), new Password(user.getPassword()), user.getRole());
     }
 }
