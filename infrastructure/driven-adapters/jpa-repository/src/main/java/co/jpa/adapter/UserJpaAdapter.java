@@ -7,6 +7,8 @@ import co.model.user.gateways.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
 @RequiredArgsConstructor
 public class UserJpaAdapter implements UserRepository {
@@ -25,6 +27,14 @@ public class UserJpaAdapter implements UserRepository {
         return UserJpaMapper
                 .toDomain(userJpaRepository
                         .findByEmail(email));
+    }
+
+    @Override
+    public User findById(UUID id) {
+        return UserJpaMapper
+                .toDomain(userJpaRepository
+                        .findById(id)
+                        .orElse(null));
     }
 
     @Override

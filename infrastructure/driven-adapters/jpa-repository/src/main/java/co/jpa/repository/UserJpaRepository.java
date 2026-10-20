@@ -3,7 +3,9 @@ package co.jpa.repository;
 import co.jpa.entity.UserJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserJpaRepository extends JpaRepository<UserJpaEntity, Long> {
+import java.util.UUID;
+
+public interface UserJpaRepository extends JpaRepository<UserJpaEntity, UUID> {
 
     UserJpaEntity findByEmail(String email);
 
