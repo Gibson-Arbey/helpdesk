@@ -11,4 +11,7 @@ public interface AgentProfileJpaRepository extends JpaRepository<AgentProfileJpa
     @Query("SELECT a FROM AgentProfileJpaEntity a WHERE a.user.id = :userId")
     AgentProfileJpaEntity findByUserId(UUID userId);
 
+    @Query("SELECT a.id FROM AgentProfileJpaEntity a WHERE a.status = 'AVAILABLE' ORDER BY a.id ASC")
+    UUID findIdByAgentProfileAvaliable();
+
 }

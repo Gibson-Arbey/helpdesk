@@ -1,4 +1,6 @@
 package co.usecase.ticket.command;
 
-public record CreateTicketCommand(String title, String description, Long customerId) {
+import java.util.UUID;
+
+public record CreateTicketCommand(String title, String description, UUID customerId) {
 }

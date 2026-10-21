@@ -40,3 +40,10 @@ management:
         enabled: true
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
+scheduler:
+  tasks:
+    league-season-expiration:
+      cron: "0 0 0 1 * *"
+      enabled: true
+      timezone: "America/Bogota"
+

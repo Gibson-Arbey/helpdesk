@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.net.PortUnreachableException;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 public class Ticket {
@@ -12,13 +13,13 @@ public class Ticket {
     private final Long id;
     private final String title;
     private final String description;
-    private final Long customerId;
+    private final UUID customerId;
     private final TicketStatus status;
     private final LocalDateTime createdOn;
-    private final Long agentId;
+    private final UUID agentId;
     private final LocalDateTime assignedOn;
 
-    private Ticket(Long id, String title, String description, Long customerId, TicketStatus status,  LocalDateTime createdOn, Long agentId, LocalDateTime assignedOn) {
+    private Ticket(Long id, String title, String description, UUID customerId, TicketStatus status,  LocalDateTime createdOn, UUID agentId, LocalDateTime assignedOn) {
         if (title == null || title.isEmpty()) {
             throw new InvalidFieldException("Title cannot be null or empty");
         }
@@ -41,15 +42,15 @@ public class Ticket {
         this.assignedOn = assignedOn;
     }
 
-    public static Ticket create(String title, String description, Long customerId) {
+    public static Ticket create(String title, String description, UUID customerId) {
         return new Ticket(null, title, description, customerId, TicketStatus.CREATED, LocalDateTime.now(), null, null);
     }
 
-    public static Ticket restore(Long id, String title, String description, Long customerId, TicketStatus status, LocalDateTime createdOn, Long agentId, LocalDateTime assignedOn) {
+    public static Ticket restore(Long id, String title, String description, UUID customerId, TicketStatus status, LocalDateTime createdOn, UUID agentId, LocalDateTime assignedOn) {
         return new Ticket(id, title, description, customerId, status, createdOn, agentId, assignedOn);
     }
 
-    public Ticket assignAgent(Long agentId) {
+    public Ticket assignAgent(UUID agentId) {
 
         if(this.status != TicketStatus.CREATED) {
             throw new InvalidFieldException("Ticket is not in CREATED status and cannot be assigned.");

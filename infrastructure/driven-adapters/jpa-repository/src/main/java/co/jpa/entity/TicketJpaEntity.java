@@ -28,7 +28,7 @@ public class TicketJpaEntity {
 
     @ManyToOne
     @JoinColumn(name = "cust_id", nullable = false)
-    private CustomerJpaEntity customer;
+    private UserJpaEntity customer;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tick_status", nullable = false)
@@ -39,7 +39,7 @@ public class TicketJpaEntity {
 
     @ManyToOne
     @JoinColumn(name = "agen_id")
-    private AgentJpaEntity agent;
+    private UserJpaEntity agent;
 
     @Column(name = "tick_assignedon")
     private LocalDateTime assignedOn;

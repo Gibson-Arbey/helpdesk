@@ -5,12 +5,14 @@ import co.model.ticket.exception.AgentNotAssignedToTicketException;
 import co.model.ticket.gateways.TicketRepository;
 import lombok.RequiredArgsConstructor;
 
+import java.util.UUID;
+
 @RequiredArgsConstructor
 public class CloseTicketUseCase {
 
     private final TicketRepository ticketRepository;
 
-    public void execute(Long ticketId, Long customerId) {
+    public void execute(Long ticketId, UUID customerId) {
         Ticket ticket = ticketRepository.findById(ticketId);
 
         if (ticket == null) {

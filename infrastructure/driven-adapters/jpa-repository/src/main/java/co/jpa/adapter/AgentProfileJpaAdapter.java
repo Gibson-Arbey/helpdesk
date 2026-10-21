@@ -28,4 +28,9 @@ public class AgentProfileJpaAdapter implements AgentProfileRepository {
                 .toDomain(agentProfileJpaRepository
                         .findByUserId(userId));
     }
+
+    @Override
+    public UUID findIdAgentProfileAvaliable() {
+        return agentProfileJpaRepository.findIdByAgentProfileAvaliable();
+    }
 }

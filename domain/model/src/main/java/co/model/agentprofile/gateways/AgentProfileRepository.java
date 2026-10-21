@@ -9,4 +9,6 @@ public interface AgentProfileRepository {
     AgentProfile save(AgentProfile agentProfile);
 
     AgentProfile findByUserId(UUID userId);
+
+    UUID findIdAgentProfileAvaliable();
 }

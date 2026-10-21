@@ -1,8 +1,7 @@
 package co.jpa.mapper;
 
-import co.jpa.entity.AgentJpaEntity;
-import co.jpa.entity.CustomerJpaEntity;
 import co.jpa.entity.TicketJpaEntity;
+import co.jpa.entity.UserJpaEntity;
 import co.model.ticket.Ticket;
 
 public class TicketJpaMapper {
@@ -31,10 +30,10 @@ public class TicketJpaMapper {
                 .id(ticket.getId())
                 .title(ticket.getTitle())
                 .description(ticket.getDescription())
-                .customer(ticket.getCustomerId() != null ? CustomerJpaEntity.builder().id(ticket.getCustomerId()).build() : null)
+                .customer(ticket.getCustomerId() != null ? UserJpaEntity.builder().id(ticket.getCustomerId()).build() : null)
                 .status(ticket.getStatus())
                 .createdOn(ticket.getCreatedOn())
-                .agent(ticket.getAgentId() != null ? AgentJpaEntity.builder().id(ticket.getAgentId()).build() : null)
+                .agent(ticket.getAgentId() != null ? UserJpaEntity.builder().id(ticket.getAgentId()).build() : null)
                 .assignedOn(ticket.getAssignedOn())
                 .build();
     }

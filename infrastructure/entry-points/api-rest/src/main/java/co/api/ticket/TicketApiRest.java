@@ -1,17 +1,16 @@
 package co.api.ticket;
 
+import co.api.config.filter.AuthenticationUser;
 import co.api.ticket.mapper.TicketRequestMapper;
 import co.api.ticket.mapper.TicketResponseMapper;
-import co.api.ticket.request.CloseTicketRequest;
 import co.api.ticket.request.CreateTicketRequest;
-import co.api.ticket.request.ResolveTicketRequest;
-import co.api.ticket.request.StartTicketRequest;
 import co.api.ticket.response.TicketResponse;
 import co.usecase.ticket.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,13 +25,13 @@ public class TicketApiRest {
     private final CloseTicketUseCase closeTicketUseCase;
 
     @PostMapping
-    public ResponseEntity<TicketResponse> createTicket(@Valid @RequestBody CreateTicketRequest request) {
+    public ResponseEntity<TicketResponse> createTicket(@AuthenticationPrincipal AuthenticationUser authenticationUser, @Valid @RequestBody CreateTicketRequest request) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(TicketResponseMapper
                         .toResponse(createTicketUseCase
                                 .execute(TicketRequestMapper
-                                        .toCreateTicketCommand(request))));
+                                        .toCreateTicketCommand(request, authenticationUser.userId()))));
     }
 
     @GetMapping("/{ticketId}")
@@ -45,20 +44,20 @@ public class TicketApiRest {
     }
 
     @PatchMapping("/{ticketId}/start")
-    public ResponseEntity<Void> startTicket(@PathVariable Long ticketId, @Valid @RequestBody StartTicketRequest request) {
-        startTicketUseCase.execute(ticketId, request.agentId());
+    public ResponseEntity<Void> startTicket(@AuthenticationPrincipal AuthenticationUser authenticationUser, @PathVariable Long ticketId) {
+        startTicketUseCase.execute(ticketId, authenticationUser.userId());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PatchMapping("/{ticketId}/resolve")
-    public ResponseEntity<Void> resolveTicket(@PathVariable Long ticketId, @Valid @RequestBody ResolveTicketRequest request) {
-        resolveTicketUseCase.execute(ticketId, request.agentId());
+    public ResponseEntity<Void> resolveTicket(@AuthenticationPrincipal AuthenticationUser authenticationUser, @PathVariable Long ticketId) {
+        resolveTicketUseCase.execute(ticketId, authenticationUser.userId());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
     @PatchMapping("/{ticketId}/close")
-    public ResponseEntity<Void> closeTicket(@PathVariable Long ticketId, @Valid @RequestBody CloseTicketRequest request) {
-        closeTicketUseCase.execute(ticketId, request.customerId());
+    public ResponseEntity<Void> closeTicket(@AuthenticationPrincipal AuthenticationUser authenticationUser, @PathVariable Long ticketId) {
+        closeTicketUseCase.execute(ticketId, authenticationUser.userId());
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
