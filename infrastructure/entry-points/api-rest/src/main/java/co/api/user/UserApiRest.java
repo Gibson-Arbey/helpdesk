@@ -7,6 +7,7 @@ import co.api.user.request.RegisterUserRequest;
 import co.api.user.response.UserResponse;
 import co.usecase.user.RegisterAgentUseCase;
 import co.usecase.user.RegisterCustomerUseCase;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class UserApiRest {
     private final RegisterCustomerUseCase registerCustomerUseCase;
 
     @PostMapping("/register-customer")
-    public ResponseEntity<UserResponse> createCustomer(@RequestBody RegisterUserRequest request){
+    public ResponseEntity<UserResponse> createCustomer(@Valid @RequestBody RegisterUserRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(UserResponseMapper
@@ -33,7 +34,7 @@ public class UserApiRest {
     }
 
     @PostMapping("/register-agent")
-    public ResponseEntity<UserResponse> createAgent(@RequestBody RegisterUserRequest request){
+    public ResponseEntity<UserResponse> createAgent(@Valid @RequestBody RegisterUserRequest request){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(UserResponseMapper

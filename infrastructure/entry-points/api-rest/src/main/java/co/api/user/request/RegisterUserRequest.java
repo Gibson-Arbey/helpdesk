@@ -1,10 +1,10 @@
 package co.api.user.request;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public record RegisterUserRequest(
-    @NotNull(message = "Name is required") String name,
-    @NotNull(message = "Email is required") String email,
-    @NotNull(message = "Password is required") String password
+    @NotBlank(message = "Name is required") String name,
+    @NotBlank(message = "Email is required") String email,
+    @NotBlank(message = "Password is required") String password
 ) {
 }

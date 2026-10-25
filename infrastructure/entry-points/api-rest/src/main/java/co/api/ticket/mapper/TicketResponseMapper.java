@@ -3,6 +3,8 @@ package co.api.ticket.mapper;
 import co.api.ticket.response.TicketResponse;
 import co.model.ticket.Ticket;
 
+import java.util.List;
+
 public class TicketResponseMapper {
 
     public static TicketResponse toResponse(Ticket ticket) {
@@ -19,5 +21,12 @@ public class TicketResponseMapper {
                 ticket.getAgentId(),
                 ticket.getAssignedOn()
         );
+    }
+
+    public static List<TicketResponse> toResponses(List<Ticket> tickets) {
+        if (tickets == null) {
+            return List.of();
+        }
+        return tickets.stream().map(TicketResponseMapper::toResponse).toList();
     }
 }

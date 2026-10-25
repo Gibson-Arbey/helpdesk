@@ -32,4 +32,38 @@ public class AgentProfile {
     public static AgentProfile restore(UUID id, UUID userId, AgentStatus status, LocalDateTime lastTicketClosedAt) {
         return new AgentProfile(id, userId, status, lastTicketClosedAt);
     }
+
+    public AgentProfile markBusy() {
+        if (status != AgentStatus.AVAILABLE) {
+            throw new InvalidFieldException("Only an AVAILABLE agent can be assigned a ticket");
+        }
+        return new AgentProfile(id, userId, AgentStatus.BUSY, lastTicketClosedAt);
+    }
+
+    public AgentProfile completeTicket() {
+        if (status != AgentStatus.BUSY) {
+            throw new InvalidFieldException("Only a BUSY agent can complete a ticket");
+        }
+        return new AgentProfile(id, userId, AgentStatus.AVAILABLE, LocalDateTime.now());
+    }
+
+    public AgentProfile releaseCancelledTicket() {
+        if (status != AgentStatus.BUSY) {
+            throw new InvalidFieldException("Only a BUSY agent can release a cancelled ticket");
+        }
+        return new AgentProfile(id, userId, AgentStatus.AVAILABLE, lastTicketClosedAt);
+    }
+
+    public AgentProfile changeStatus(AgentStatus newStatus) {
+        if (newStatus == null) {
+            throw new InvalidFieldException("Agent status cannot be null");
+        }
+        if (newStatus == AgentStatus.BUSY) {
+            throw new InvalidFieldException("BUSY is managed by ticket assignment");
+        }
+        if (status == AgentStatus.BUSY) {
+            throw new InvalidFieldException("An agent with an active ticket cannot change status");
+        }
+        return new AgentProfile(id, userId, newStatus, lastTicketClosedAt);
+    }
 }

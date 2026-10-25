@@ -35,7 +35,7 @@ class CorsConfigTest {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(origins);
-        config.setAllowedMethods(List.of("POST", "GET")); // TODO: Check others required methods
+        config.setAllowedMethods(List.of("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of(CorsConfiguration.ALL));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -49,7 +49,7 @@ class CorsConfigTest {
         assertNotNull(retrievedConfig);
         assertEquals(Boolean.TRUE, retrievedConfig.getAllowCredentials());
         assertEquals(List.of("http://example.com", "http://another.com"), retrievedConfig.getAllowedOrigins());
-        assertEquals(List.of("POST", "GET"), retrievedConfig.getAllowedMethods());
+        assertEquals(List.of("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"), retrievedConfig.getAllowedMethods());
         assertEquals(List.of(CorsConfiguration.ALL), retrievedConfig.getAllowedHeaders());
     }
 }

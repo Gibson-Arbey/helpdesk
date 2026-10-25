@@ -1,9 +1,9 @@
 package co.api.authentication.request;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 
 public record AuthenticationRequest(
-    @NotNull(message = "Email is required") String email,
-    @NotNull(message = "Password is required") String password
+    @NotBlank(message = "Email is required") String email,
+    @NotBlank(message = "Password is required") String password
 ) {
 }

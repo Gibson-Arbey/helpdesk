@@ -9,6 +9,6 @@ public class UserResponseMapper {
         if (user == null) {
             return null;
         }
-        return new UserResponse(user.getId(), user.getName(), user.getEmail());
+        return new UserResponse(user.getId(), user.getName(), user.getEmail().value());
     }
 }

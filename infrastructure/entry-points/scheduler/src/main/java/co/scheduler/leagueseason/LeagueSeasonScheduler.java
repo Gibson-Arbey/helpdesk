@@ -26,6 +26,8 @@ public class LeagueSeasonScheduler {
             return;
         }
 
-        leagueSeasonExpirationUseCase.execute();
+        var cycleResult = leagueSeasonExpirationUseCase.execute();
+        log.info("Expired {} league seasons and started {} new league seasons",
+                cycleResult.expiredCount(), cycleResult.startedCount());
     }
 }

@@ -26,7 +26,7 @@ public class TicketJpaEntity {
     @Column(name = "tick_description", nullable = false)
     private String description;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cust_id", nullable = false)
     private UserJpaEntity customer;
 
@@ -37,7 +37,7 @@ public class TicketJpaEntity {
     @Column(name = "tick_createdon", nullable = false)
     private LocalDateTime createdOn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "agen_id")
     private UserJpaEntity agent;
 

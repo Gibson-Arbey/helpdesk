@@ -17,7 +17,7 @@ public class TicketJpaMapper {
                 entity.getCustomer().getId(),
                 entity.getStatus(),
                 entity.getCreatedOn(),
-                entity.getAgent().getId(),
+                entity.getAgent() == null ? null : entity.getAgent().getId(),
                 entity.getAssignedOn()
         );
     }

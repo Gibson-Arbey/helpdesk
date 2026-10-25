@@ -43,14 +43,25 @@ CREATE INDEX idx_agentprofiles_status ON agentprofiles(agpr_status);
 CREATE TABLE leagues (
     leag_id UUID PRIMARY KEY,
     leag_name VARCHAR(100) NOT NULL UNIQUE,
-    leag_description TEXT
+    leag_description TEXT,
+    leag_maximunnumberofopentickets INTEGER NOT NULL,
+    leag_maximumnumberofpoints INTEGER NOT NULL,
+    leag_minimumnumberofpoints INTEGER NOT NULL
 );
 
-INSERT INTO leagues (leag_id, leag_name, leag_description)
+-- Seed values define simple starter tiers for the teaching project.
+INSERT INTO leagues (
+    leag_id,
+    leag_name,
+    leag_description,
+    leag_maximunnumberofopentickets,
+    leag_maximumnumberofpoints,
+    leag_minimumnumberofpoints
+)
 VALUES
-    (md5('league:bronze')::uuid, 'Bronce', 'Nivel inicial de la liga.'),
-    (md5('league:silver')::uuid, 'Plata', 'Nivel intermedio de la liga.'),
-    (md5('league:gold')::uuid, 'Oro', 'Nivel avanzado de la liga.');
+    (md5('league:bronze')::uuid, 'Bronce', 'Nivel inicial de la liga.', 5, 100, 0),
+    (md5('league:silver')::uuid, 'Plata', 'Nivel intermedio de la liga.', 10, 250, 100),
+    (md5('league:gold')::uuid, 'Oro', 'Nivel avanzado de la liga.', 20, 500, 250);
 
 CREATE TABLE leagueseasons (
     lese_id UUID PRIMARY KEY,

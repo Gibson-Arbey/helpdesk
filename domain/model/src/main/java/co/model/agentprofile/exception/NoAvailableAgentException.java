@@ -15,6 +15,6 @@ public class NoAvailableAgentException extends DomainException {
 
     @Override
     public ErrorTypeEnum getErrorType() {
-        return ErrorTypeEnum.VALIDATION;
+        return ErrorTypeEnum.CONFLICT;
     }
 }

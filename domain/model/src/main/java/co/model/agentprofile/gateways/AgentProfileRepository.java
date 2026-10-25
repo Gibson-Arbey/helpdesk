@@ -1,7 +1,9 @@
 package co.model.agentprofile.gateways;
 
 import co.model.agentprofile.AgentProfile;
+import co.model.agentprofile.AgentStatus;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface AgentProfileRepository {
@@ -10,5 +12,7 @@ public interface AgentProfileRepository {
 
     AgentProfile findByUserId(UUID userId);
 
-    UUID findIdAgentProfileAvaliable();
+    AgentProfile findFirstAvailable();
+
+    List<AgentProfile> findByStatus(AgentStatus status);
 }
